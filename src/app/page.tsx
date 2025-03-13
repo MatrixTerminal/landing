@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { MessageCircle, Github, BookOpen } from "lucide-react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { XIcon } from "@/components/XIcon";
 
 // Initialize fonts
 const geistSans = Geist({
@@ -17,18 +18,6 @@ const geistMono = Geist_Mono({
 });
 
 // Custom X icon (Twitter)
-function XIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg
-      className={className}
-      fill='currentColor'
-      viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
-    </svg>
-  );
-}
 
 // Enhanced animations
 const styles = `
@@ -85,9 +74,9 @@ export default function HomePage() {
   // Add styles to head on client-side
   useEffect(() => {
     // Enforce dark mode
-    document.documentElement.classList.add('dark');
-    document.body.classList.add('dark');
-    
+    document.documentElement.classList.add("dark");
+    document.body.classList.add("dark");
+
     const styleSheet = document.createElement("style");
     styleSheet.textContent = styles;
     document.head.appendChild(styleSheet);
@@ -98,7 +87,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className={`${geistSans.variable} ${geistMono.variable} bg-black text-white`}>
+    <div
+      className={`${geistSans.variable} ${geistMono.variable} bg-black text-white`}
+    >
       <div className='relative flex flex-col items-center justify-center min-h-screen bg-black text-white overflow-hidden'>
         {/* Enhanced animated gradient background */}
         <div className='absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent animate-pulse' />
@@ -211,9 +202,7 @@ export default function HomePage() {
 
           {/* Version Number - Bottom */}
           <div className='absolute bottom-6 right-6 md:right-auto px-4 py-2 rounded-full bg-gray-900/10 backdrop-blur-sm border border-gray-800/10'>
-            <span className='text-sm font-medium text-gray-400'>
-              v0.1337
-            </span>
+            <span className='text-sm font-medium text-gray-400'>v0.1337</span>
           </div>
         </div>
       </div>
