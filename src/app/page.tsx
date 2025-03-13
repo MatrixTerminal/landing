@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { MessageCircle, Github, BookOpen } from "lucide-react";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -18,10 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function HomePage() {
-  const [isConnecting, setIsConnecting] = useState(false);
-
   const handleConnect = () => {
-    setIsConnecting(true);
     window.location.href = "https://enter.thematrix.app";
   };
 
@@ -123,7 +120,6 @@ export default function HomePage() {
             {/* Custom Connect Button */}
             <button
               onClick={handleConnect}
-              disabled={isConnecting}
               className='group relative px-12 py-5 bg-primary/20 text-primary rounded-xl
                        overflow-hidden transition-all duration-300
                        hover:bg-primary/30 hover:scale-105 hover:shadow-lg
@@ -133,14 +129,7 @@ export default function HomePage() {
             >
               <div className='absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 animate-shine' />
               <span className='text-xl font-bold tracking-wide flex items-center gap-3'>
-                {isConnecting ? (
-                  <>
-                    <span className='animate-terminal-blink'>_</span>
-                    ACTIVATING THE MATRIX...
-                  </>
-                ) : (
-                  "Enter The Matrix"
-                )}
+                Enter The Matrix
               </span>
             </button>
           </div>
