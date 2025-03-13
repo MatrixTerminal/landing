@@ -17,52 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Custom X icon (Twitter)
-
-// Enhanced animations
-const styles = `
-  @keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
-  }
-  .animate-floating {
-    animation: floating 6s ease-in-out infinite;
-  }
-  
-  @keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-  .animate-shine {
-    animation: shine 8s infinite;
-  }
-  
-  @keyframes slide {
-    0% { background-position: 0 0; }
-    100% { background-position: 20px 20px; }
-  }
-  .animate-slide {
-    animation: slide 3s linear infinite;
-  }
-  
-  @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  .animate-fade-in {
-    animation: fade-in 2s ease-out;
-  }
-
-  @keyframes terminal-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-  .animate-terminal-blink {
-    animation: terminal-blink 1s step-end infinite;
-  }
-`;
-
 export default function HomePage() {
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -71,19 +25,10 @@ export default function HomePage() {
     window.location.href = "https://thematrix.app";
   };
 
-  // Add styles to head on client-side
+  // Enforce dark mode on client-side
   useEffect(() => {
-    // Enforce dark mode
     document.documentElement.classList.add("dark");
     document.body.classList.add("dark");
-
-    const styleSheet = document.createElement("style");
-    styleSheet.textContent = styles;
-    document.head.appendChild(styleSheet);
-
-    return () => {
-      document.head.removeChild(styleSheet);
-    };
   }, []);
 
   return (
