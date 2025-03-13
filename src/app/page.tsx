@@ -22,7 +22,7 @@ export default function HomePage() {
 
   const handleConnect = () => {
     setIsConnecting(true);
-    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    window.location.href = "https://enter.thematrix.app";
   };
 
   // Enforce dark mode on client-side
