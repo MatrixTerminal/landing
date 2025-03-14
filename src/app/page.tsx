@@ -109,8 +109,8 @@ export default function HomePage() {
         />
 
         {/* Social Links - Bottom Left */}
-        <div className='absolute bottom-6 left-6 z-20'>
-          <div className='flex items-center gap-6 px-4 py-2 rounded-full backdrop-blur-sm bg-black/50 border border-gray-800/20 transition-all duration-300 hover:bg-black/60 hover:border-primary/20 hover:shadow-[0_0_15px_rgba(71,216,163,0.15)]'>
+        <div className='absolute bottom-6 left-6 z-30'>
+          <div className='flex items-center gap-6 px-4 py-2 rounded-full backdrop-blur-md bg-black/90 border border-gray-800/20 transition-all duration-300 hover:bg-black/95 hover:border-primary/20 hover:shadow-[0_0_15px_rgba(71,216,163,0.15)]'>
             <a
               href='https://x.com/thematrixapp'
               target='_blank'
@@ -158,16 +158,16 @@ export default function HomePage() {
         </div>
 
         {/* Main content container with proper spacing */}
-        <div className='relative z-10 flex flex-col items-center justify-center w-full min-h-screen'>
+        <div className='relative z-20 flex flex-col items-center justify-center w-full min-h-screen'>
           {/* Logo Container */}
-          <div className='relative w-full h-96'>
+          <div className='relative w-full h-96 z-30'>
             <Image
               src='/logo_with_outline.png'
               alt='Matrix Logo'
               fill
               style={{ objectFit: "contain" }}
               priority
-              className='filter drop-shadow-2xl animate-floating'
+              className='filter drop-shadow-2xl animate-floating relative z-30'
             />
           </div>
 
@@ -176,9 +176,10 @@ export default function HomePage() {
             {/* Enhanced Premium Glass Card Effect - More See-Through */}
             <div
               className='text-center space-y-4 max-w-3xl px-10 py-10 rounded-3xl mb-4 mt-[-40px]
-           backdrop-blur-sm bg-gradient-to-br from-black/10 to-black/5
+           backdrop-blur-md bg-black/90 
            border border-primary/10 shadow-[0_0_25px_rgba(71,216,163,0.15)]
-           relative overflow-hidden group transition duration-300 hover:shadow-[0_0_35px_rgba(71,216,163,0.25)]'
+           relative overflow-hidden group transition duration-300 hover:shadow-[0_0_35px_rgba(71,216,163,0.25)]
+           z-30'
             >
               {/* Subtle glow effects */}
               <div className='absolute -inset-1 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 blur-xl opacity-20 group-hover:opacity-30 transition duration-500'></div>
@@ -189,8 +190,7 @@ export default function HomePage() {
               <div className='absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent'></div>
 
               <h1 className='text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-snug relative z-10'>
-                &apos;Money Markets First&apos; Hyper-gambling Terminal for the
-                Elite Financial Madman.
+                Hyper-gambling Terminal for the Elite Financial Madman.
               </h1>
               <div className='space-y-3 relative z-10'>
                 <p className='text-sm md:text-base text-gray-200 leading-relaxed'>
@@ -202,7 +202,7 @@ export default function HomePage() {
                   </span>
                 </p>
                 <p className='text-sm md:text-base text-gray-300 leading-relaxed'>
-                  Your Console from Autonomous SocialFi to Contract Deployments.
+                  Your Console from Strategic Research to Assisted Perps Trading
                 </p>
               </div>
             </div>
@@ -210,13 +210,13 @@ export default function HomePage() {
             {/* Custom Connect Button - Enhanced */}
             <button
               onClick={handleConnect}
-              className='group relative px-16 py-5 bg-primary/20 text-primary rounded-xl
+              className='group relative px-16 py-5 bg-black/90 text-primary rounded-xl
                        overflow-hidden transition-all duration-300
-                       hover:bg-primary/30 hover:scale-105 hover:shadow-lg
+                       hover:bg-black/95 hover:scale-105 hover:shadow-lg
                        active:scale-95 
-                       border border-primary/30 backdrop-blur-lg cursor-pointer
+                       border border-primary/30 backdrop-blur-md cursor-pointer
                        shadow-[0_0_15px_rgba(71,216,163,0.15)]
-                       disabled:cursor-not-allowed'
+                       disabled:cursor-not-allowed z-30'
             >
               <div className='absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 animate-shine' />
               <span className='text-xl font-bold tracking-wide flex items-center gap-3'>
@@ -226,7 +226,7 @@ export default function HomePage() {
           </div>
 
           {/* Version Number - Bottom */}
-          <div className='absolute bottom-6 right-6 md:right-auto px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)]'>
+          <div className='absolute bottom-6 right-6 md:right-auto px-4 py-2 rounded-full bg-black/90 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-30'>
             <span className='text-sm font-medium text-gray-400'>v0.1337</span>
           </div>
         </div>
