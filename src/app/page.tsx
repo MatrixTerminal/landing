@@ -21,7 +21,7 @@ export default function HomePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleConnect = () => {
-    window.location.href = "https://enter.thematrix.app";
+    window.location.href = "https://thematrix.app";
   };
 
   // Initialize and run the matrix animation
