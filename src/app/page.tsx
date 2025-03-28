@@ -108,9 +108,9 @@ export default function HomePage() {
           style={{ display: "block" }}
         />
 
-        {/* Social Links - Bottom Left */}
-        <div className='absolute bottom-6 left-6 z-30'>
-          <div className='flex items-center gap-6 px-4 py-2 rounded-full backdrop-blur-md bg-black/90 border border-gray-800/20 transition-all duration-300 hover:bg-black/95 hover:border-primary/20 hover:shadow-[0_0_15px_rgba(71,216,163,0.15)]'>
+        {/* Social Links - Bottom Left (Adjusted for mobile) */}
+        <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-6 md:left-6 md:transform-none z-30'>
+          <div className='flex items-center gap-4 md:gap-6 px-3 py-1.5 md:px-4 md:py-2 rounded-full backdrop-blur-md bg-black/90 border border-gray-800/20 transition-all duration-300 hover:bg-black/95 hover:border-primary/20 hover:shadow-[0_0_15px_rgba(71,216,163,0.15)]'>
             <a
               href='https://x.com/thematrixapp'
               target='_blank'
@@ -158,9 +158,9 @@ export default function HomePage() {
         </div>
 
         {/* Main content container with proper spacing */}
-        <div className='relative z-20 flex flex-col items-center justify-center w-full min-h-screen'>
-          {/* Logo Container */}
-          <div className='relative w-full h-96 z-30'>
+        <div className='relative z-20 flex flex-col items-center justify-center w-full min-h-screen px-4 md:px-0'>
+          {/* Logo Container - Adjusted for mobile */}
+          <div className='relative w-full h-64 md:h-96 z-30 mt-[-40px] md:mt-0'>
             <Image
               src='/logo_with_outline.png'
               alt='Matrix Logo'
@@ -171,11 +171,11 @@ export default function HomePage() {
             />
           </div>
 
-          {/* Content below logo - ENHANCED WITH PREMIUM GLASS EFFECT */}
-          <div className='flex flex-col items-center space-y-12'>
-            {/* Enhanced Premium Glass Card Effect - More See-Through */}
+          {/* Content below logo - ENHANCED WITH PREMIUM GLASS EFFECT - Mobile optimized */}
+          <div className='flex flex-col items-center space-y-8 md:space-y-12 w-full'>
+            {/* Enhanced Premium Glass Card Effect - More See-Through, Mobile optimized */}
             <div
-              className='text-center space-y-4 max-w-3xl px-10 py-10 rounded-3xl mb-4 mt-[-40px]
+              className='text-center space-y-3 md:space-y-4 w-full max-w-3xl px-6 md:px-10 py-6 md:py-10 rounded-2xl md:rounded-3xl mb-2 md:mb-4 mt-[-20px] md:mt-[-40px]
            backdrop-blur-md bg-black/90 
            border border-primary/10 shadow-[0_0_25px_rgba(71,216,163,0.15)]
            relative overflow-hidden group transition duration-300 hover:shadow-[0_0_35px_rgba(71,216,163,0.25)]
@@ -189,11 +189,11 @@ export default function HomePage() {
               <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent'></div>
               <div className='absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent'></div>
 
-              <h1 className='text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-snug relative z-10'>
+              <h1 className='text-lg md:text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-snug relative z-10'>
                 Hyper-gambling Terminal for the Elite Financial Madman.
               </h1>
-              <div className='space-y-3 relative z-10'>
-                <p className='text-sm md:text-base text-gray-200 leading-relaxed'>
+              <div className='space-y-2 md:space-y-3 relative z-10'>
+                <p className='text-xs md:text-base text-gray-200 leading-relaxed'>
                   AI interface for complex DeFi management across
                   <span className='font-semibold text-primary'> 10 L2s </span>&
                   <span className='font-semibold text-primary'>
@@ -201,16 +201,16 @@ export default function HomePage() {
                     24 Protocols
                   </span>
                 </p>
-                <p className='text-sm md:text-base text-gray-300 leading-relaxed'>
+                <p className='text-xs md:text-base text-gray-300 leading-relaxed'>
                   Your Console from Strategic Research to Assisted Perps Trading
                 </p>
               </div>
             </div>
 
-            {/* Custom Connect Button - Enhanced */}
+            {/* Custom Connect Button - Enhanced and Mobile optimized */}
             <button
               onClick={handleConnect}
-              className='group relative px-16 py-5 bg-black/90 text-primary rounded-xl
+              className='group relative px-8 md:px-16 py-4 md:py-5 bg-black/90 text-primary rounded-xl
                        overflow-hidden transition-all duration-300
                        hover:bg-black/95 hover:scale-105 hover:shadow-lg
                        active:scale-95 
@@ -219,15 +219,15 @@ export default function HomePage() {
                        disabled:cursor-not-allowed z-30'
             >
               <div className='absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 animate-shine' />
-              <span className='text-xl font-bold tracking-wide flex items-center gap-3'>
+              <span className='text-base md:text-xl font-bold tracking-wide flex items-center gap-2 md:gap-3'>
                 Enter The Matrix
               </span>
             </button>
           </div>
 
-          {/* Version Number - Bottom */}
-          <div className='absolute bottom-6 right-6 md:right-auto px-4 py-2 rounded-full bg-black/90 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-30'>
-            <span className='text-sm font-medium text-gray-400'>v0.1337</span>
+          {/* Version Number - Bottom, centered on mobile */}
+          <div className='absolute bottom-14 md:bottom-6 right-1/2 md:right-6 transform translate-x-1/2 md:transform-none px-3 md:px-4 py-1 md:py-2 rounded-full bg-black/90 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-30'>
+            <span className='text-xs md:text-sm font-medium text-gray-400'>v0.1337</span>
           </div>
         </div>
       </div>
