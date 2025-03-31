@@ -109,7 +109,7 @@ export default function HomePage() {
         />
 
         {/* Social Links - Bottom Left (Adjusted for mobile) */}
-        <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-6 md:left-6 md:transform-none z-30'>
+        <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-6 md:left-20 md:transform-none md:pl-6 z-30'>
           <div className='flex items-center gap-4 md:gap-6 px-3 py-1.5 md:px-4 md:py-2 rounded-full backdrop-blur-md bg-black/90 border border-gray-800/20 transition-all duration-300 hover:bg-black/95 hover:border-primary/20 hover:shadow-[0_0_15px_rgba(71,216,163,0.15)]'>
             <a
               href='https://x.com/thematrixapp'
@@ -145,13 +145,15 @@ export default function HomePage() {
             </a>
 
             <a
-              href='/docs'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='relative group'
+              className='relative group cursor-not-allowed opacity-50'
               aria-label='Documentation'
             >
-              <BookOpen className='h-4 w-4 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-110' />
+              <div className='relative'>
+                <BookOpen className='h-4 w-4 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-110' />
+                <span className='absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black/90 text-xs text-gray-300 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
+                  Coming Soon
+                </span>
+              </div>
               <span className='absolute -bottom-1 left-1/2 w-0 h-px bg-primary transform -translate-x-1/2 transition-all duration-300 group-hover:w-full'></span>
             </a>
           </div>
@@ -226,8 +228,10 @@ export default function HomePage() {
           </div>
 
           {/* Version Number - Bottom, centered on mobile */}
-          <div className='absolute bottom-14 md:bottom-6 right-1/2 md:right-6 transform translate-x-1/2 md:transform-none px-3 md:px-4 py-1 md:py-2 rounded-full bg-black/90 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-30'>
-            <span className='text-xs md:text-sm font-medium text-gray-400'>v0.1337</span>
+          <div className='absolute bottom-14 md:bottom-6 left-1/2 md:left-1/2 transform -translate-x-1/2 px-3 md:px-4 py-1 md:py-2 rounded-full bg-black/90 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-30'>
+            <span className='text-xs md:text-sm font-medium text-gray-400'>
+              v0.1337
+            </span>
           </div>
         </div>
       </div>
