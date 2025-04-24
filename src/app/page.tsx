@@ -87,7 +87,7 @@ export default function HomePage() {
       }
     };
 
-    const interval = setInterval(draw, 35);
+    const interval = setInterval(draw, 42);
 
     // Cleanup
     return () => {
@@ -192,19 +192,13 @@ export default function HomePage() {
               <div className='absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent'></div>
 
               <h1 className='text-lg md:text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-snug relative z-10'>
-                Hyper-gambling Terminal for the Elite Financial Madman.
+                &apos;Cursor for Hyperliquid&apos; - an advanced co-pilot for
+                perps trading.
               </h1>
               <div className='space-y-2 md:space-y-3 relative z-10'>
                 <p className='text-xs md:text-base text-gray-200 leading-relaxed'>
-                  AI interface for complex DeFi management across
-                  <span className='font-semibold text-primary'> 10 L2s </span>&
-                  <span className='font-semibold text-primary'>
-                    {" "}
-                    24 Protocols
-                  </span>
-                </p>
-                <p className='text-xs md:text-base text-gray-300 leading-relaxed'>
-                  Your Console from Strategic Research to Assisted Perps Trading
+                  Ai-powered hyper gambling Terminal for the elite financial
+                  madman, from strategic intel to personalized risk management.
                 </p>
               </div>
             </div>
