@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import { MessageCircle, Github, BookOpen } from "lucide-react";
+import { Github } from "lucide-react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { XIcon } from "@/components/XIcon";
 
@@ -64,9 +64,10 @@ export default function HomePage() {
     // Drawing the characters
     const draw = () => {
       // Black BG for the canvas with opacity to create trail effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      ctx.globalAlpha = 0.6;
       ctx.fillStyle = "#47D8A3"; // Green primary color theme
       ctx.font = font_size + "px arial";
 
@@ -87,7 +88,7 @@ export default function HomePage() {
       }
     };
 
-    const interval = setInterval(draw, 42);
+    const interval = setInterval(draw, 55);
 
     // Cleanup
     return () => {
@@ -100,136 +101,619 @@ export default function HomePage() {
     <div
       className={`${geistSans.variable} ${geistMono.variable} bg-black text-white`}
     >
-      <div className='relative flex flex-col items-center justify-center min-h-screen bg-black text-white overflow-hidden'>
+      <div className='relative flex flex-col min-h-screen bg-black text-white overflow-hidden'>
         {/* Matrix animation canvas as background */}
         <canvas
           ref={canvasRef}
-          className='absolute inset-0 z-0'
+          className='fixed inset-0 z-0'
           style={{ display: "block" }}
         />
+        {/* Overlay to dim the matrix animation */}
+        <div className='fixed inset-0 z-0 bg-black/10 backdrop-blur-[2px]'></div>
 
-        {/* Social Links - Bottom Left (Adjusted for mobile) */}
-        <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-6 md:left-20 md:transform-none md:pl-6 z-30'>
-          <div className='flex items-center gap-4 md:gap-6 px-3 py-1.5 md:px-4 md:py-2 rounded-full backdrop-blur-md bg-black/90 border border-gray-800/20 transition-all duration-300 hover:bg-black/95 hover:border-primary/20 hover:shadow-[0_0_15px_rgba(71,216,163,0.15)]'>
-            <a
-              href='https://x.com/thematrixapp'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='relative group'
-              aria-label='Twitter'
-            >
-              <XIcon className='h-4 w-4 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-110' />
-              <span className='absolute -bottom-1 left-1/2 w-0 h-px bg-primary transform -translate-x-1/2 transition-all duration-300 group-hover:w-full'></span>
-            </a>
-
-            <a
-              href='https://t.me/the_matrix_official'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='relative group'
-              aria-label='Telegram'
-            >
-              <MessageCircle className='h-4 w-4 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-110' />
-              <span className='absolute -bottom-1 left-1/2 w-0 h-px bg-primary transform -translate-x-1/2 transition-all duration-300 group-hover:w-full'></span>
-            </a>
-
-            <a
-              href='https://github.com/MatrixTerminal/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='relative group'
-              aria-label='GitHub'
-            >
-              <Github className='h-4 w-4 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-110' />
-              <span className='absolute -bottom-1 left-1/2 w-0 h-px bg-primary transform -translate-x-1/2 transition-all duration-300 group-hover:w-full'></span>
-            </a>
-
-            <a
-              className='relative group cursor-not-allowed opacity-50'
-              aria-label='Documentation'
-            >
-              <div className='relative'>
-                <BookOpen className='h-4 w-4 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-110' />
-                <span className='absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black/90 text-xs text-gray-300 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
-                  Coming Soon
-                </span>
-              </div>
-              <span className='absolute -bottom-1 left-1/2 w-0 h-px bg-primary transform -translate-x-1/2 transition-all duration-300 group-hover:w-full'></span>
-            </a>
-          </div>
+        <div className='relative w-full h-64 md:h-96 z-30 md:mt-40'>
+          <Image
+            src='/logo_with_outline.png'
+            alt='Matrix Logo'
+            fill
+            style={{ objectFit: "contain" }}
+            priority
+            className='filter drop-shadow-2xl animate-floating relative md:px-20 z-30'
+          />
         </div>
-
-        {/* Main content container with proper spacing */}
-        <div className='relative z-20 flex flex-col items-center justify-center w-full min-h-screen px-4 md:px-0'>
-          {/* Logo Container - Adjusted for mobile */}
-          <div className='relative w-full h-64 md:h-96 z-30 mt-[-40px] md:mt-0'>
-            <Image
-              src='/logo_with_outline.png'
-              alt='Matrix Logo'
-              fill
-              style={{ objectFit: "contain" }}
-              priority
-              className='filter drop-shadow-2xl animate-floating relative z-30'
-            />
+        {/* Hero Section */}
+        <div className='relative mt-[-60px] px-4 md:px-10 z-10 max-w-7xl mx-auto w-full'>
+          <div className='flex flex-col items-center justify-between gap-10'>
+            <div className='relative'>
+              <div className='absolute inset-0 blur-3xl bg-gradient-to-r from-primary/30 via-transparent to-primary/20 opacity-20'></div>
+              <h1 className='text-6xl md:text-8xl font-bold text-white tracking-tighter leading-tight'>
+                The{" "}
+                <span className='bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent'>
+                  AI-Powered
+                </span>{" "}
+                <br className='hidden md:block' />
+                Trading Terminal
+              </h1>
+            </div>
+            <p className='text-xl md:text-3xl text-gray-300 max-w-3xl mx-auto'>
+              Built to make you{" "}
+              <span className='text-white font-semibold'>
+                extraordinarily productive
+              </span>
+              , The Matrix is the best way to trade with AI assistance.
+            </p>
+            <div className='flex flex-col sm:flex-row gap-6 pt-8'>
+              <button
+                onClick={handleConnect}
+                className='group relative px-8 py-4 bg-primary text-black font-bold rounded-xl text-xl
+                           shadow-[0_0_30px_rgba(71,216,163,0.4)] hover:shadow-[0_0_50px_rgba(71,216,163,0.6)]
+                           hover:bg-primary/95 transition-all duration-300 transform hover:scale-105 active:scale-95'
+              >
+                <div className='absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 rounded-xl opacity-50 animate-shine'></div>
+                Get Started
+              </button>
+              <a
+                href='#learn-more'
+                className='group relative px-8 py-4 bg-gray-900/80 text-white font-medium rounded-xl text-xl
+                           border border-primary/30 hover:border-primary/50 hover:bg-gray-900/90 
+                           transition-all duration-300 flex items-center justify-center transform hover:scale-105 active:scale-95'
+              >
+                Learn More
+                <svg
+                  className='ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform duration-300'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M9 5l7 7-7 7'
+                  ></path>
+                </svg>
+              </a>
+            </div>
           </div>
 
-          {/* Content below logo - ENHANCED WITH PREMIUM GLASS EFFECT - Mobile optimized */}
-          <div className='flex flex-col items-center space-y-8 md:space-y-12 w-full'>
-            {/* Enhanced Premium Glass Card Effect - More See-Through, Mobile optimized */}
-            <div
-              className='text-center space-y-3 md:space-y-4 w-full max-w-3xl px-6 md:px-10 py-6 md:py-10 rounded-2xl md:rounded-3xl mb-2 md:mb-4 mt-[-20px] md:mt-[-40px]
-           backdrop-blur-md bg-black/90 
-           border border-primary/10 shadow-[0_0_25px_rgba(71,216,163,0.15)]
-           relative overflow-hidden group transition duration-300 hover:shadow-[0_0_35px_rgba(71,216,163,0.25)]
-           z-30'
-            >
-              {/* Subtle glow effects */}
-              <div className='absolute -inset-1 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 blur-xl opacity-20 group-hover:opacity-30 transition duration-500'></div>
-              <div className='absolute -inset-0.5 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-15 group-hover:opacity-25 animate-pulse'></div>
+          {/* Features Section */}
+          <div className='mt-40 space-y-48 relative'>
+            {/* Background accent */}
+            <div className='absolute top-1/4 left-0 right-0 h-[500px] bg-gradient-to-b from-primary/5 to-transparent -z-10 blur-3xl opacity-30'></div>
 
-              {/* Glass card shine effect */}
-              <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent'></div>
-              <div className='absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent'></div>
-
-              <h1 className='text-lg md:text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-snug relative z-10'>
-                &apos;Cursor for Hyperliquid&apos;
-              </h1>
-              <p className='text-sm md:text-lg font-medium text-primary/90 relative z-10 mt-1 mb-3'>
-                your advanced co-pilot for perps trading.
-              </p>
-              <div className='space-y-2 md:space-y-3 relative z-10'>
-                <p className='text-xs md:text-base text-gray-200 leading-relaxed'>
-                  Ai-powered hyper gambling Terminal for the elite financial
-                  madman, from strategic intel to personalized risk management.
+            <div className='flex flex-col md:flex-row items-center gap-16'>
+              <div className='md:w-1/2 space-y-6 order-2 md:order-1 px-6'>
+                <div className='inline-block bg-primary/10 px-4 py-1 rounded-full text-primary font-semibold mb-2'>
+                  Advanced Analytics
+                </div>
+                <h2 className='text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight'>
+                  Advanced Market <span className='text-primary'>Analysis</span>
+                </h2>
+                <p className='text-xl text-gray-300 leading-relaxed'>
+                  Our AI analyzes market data in real-time, providing you with
+                  actionable insights and trading opportunities.
                 </p>
+                <ul className='space-y-4 text-gray-300 pt-2'>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Pattern recognition across multiple timeframes
+                    </span>
+                  </li>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Sentiment analysis from news and social media
+                    </span>
+                  </li>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Correlation detection between assets
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className='md:w-1/2 relative h-80 md:h-96 order-1 md:order-2'>
+                <div className='absolute -inset-10 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 blur-3xl opacity-30 rounded-full'></div>
+                <div className='w-full h-full relative overflow-hidden rounded-2xl border border-primary/20 bg-gray-900/70 backdrop-blur-sm shadow-[0_0_35px_rgba(0,0,0,0.4)]'>
+                  <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent'></div>
+                  <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 to-transparent'></div>
+                  <div className='absolute inset-0 flex items-center justify-center text-primary text-lg font-mono'>
+                    [Chart Visualization Placeholder]
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Custom Connect Button - Enhanced and Mobile optimized */}
-            <button
-              onClick={handleConnect}
-              className='group relative px-8 md:px-16 py-4 md:py-5 bg-black/90 text-primary rounded-xl
-                       overflow-hidden transition-all duration-300
-                       hover:bg-black/95 hover:scale-105 hover:shadow-lg
-                       active:scale-95 
-                       border border-primary/30 backdrop-blur-md cursor-pointer
-                       shadow-[0_0_15px_rgba(71,216,163,0.15)]
-                       disabled:cursor-not-allowed z-30'
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 animate-shine' />
-              <span className='text-base md:text-xl font-bold tracking-wide flex items-center gap-2 md:gap-3'>
-                Enter The Matrix
-              </span>
-            </button>
+            <div className='flex flex-col md:flex-row items-center gap-16'>
+              <div className='md:w-1/2 relative h-80 md:h-96'>
+                <div className='absolute -inset-10 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 blur-3xl opacity-30 rounded-full'></div>
+                <div className='w-full h-full relative overflow-hidden rounded-2xl border border-primary/20 bg-gray-900/70 backdrop-blur-sm shadow-[0_0_35px_rgba(0,0,0,0.4)]'>
+                  <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent'></div>
+                  <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 to-transparent'></div>
+                  <div className='absolute inset-0 flex items-center justify-center text-primary text-lg font-mono'>
+                    [Risk Management Interface Placeholder]
+                  </div>
+                </div>
+              </div>
+              <div className='md:w-1/2 space-y-6 px-6'>
+                <div className='inline-block bg-primary/10 px-4 py-1 rounded-full text-primary font-semibold mb-2'>
+                  Risk Management
+                </div>
+                <h2 className='text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight'>
+                  Intelligent{" "}
+                  <span className='text-primary'>Risk Management</span>
+                </h2>
+                <p className='text-xl text-gray-300 leading-relaxed'>
+                  Let our AI handle risk calculations and position sizing based
+                  on your trading strategy and risk tolerance.
+                </p>
+                <ul className='space-y-4 text-gray-300 pt-2'>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Automated position sizing
+                    </span>
+                  </li>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Dynamic stop-loss and take-profit levels
+                    </span>
+                  </li>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Portfolio exposure monitoring
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row items-center gap-16'>
+              <div className='md:w-1/2 space-y-6 order-2 md:order-1 px-6'>
+                <div className='inline-block bg-primary/10 px-4 py-1 rounded-full text-primary font-semibold mb-2'>
+                  Natural Language
+                </div>
+                <h2 className='text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight'>
+                  Natural Language <span className='text-primary'>Trading</span>
+                </h2>
+                <p className='text-xl text-gray-300 leading-relaxed'>
+                  Simply type your trading intention, and our AI will understand
+                  and execute it for you.
+                </p>
+                <ul className='space-y-4 text-gray-300 pt-2'>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Execute complex orders with simple text
+                    </span>
+                  </li>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Ask for market analysis in plain English
+                    </span>
+                  </li>
+                  <li className='flex items-center group'>
+                    <div className='flex-shrink-0 p-1 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300'>
+                      <svg
+                        className='w-5 h-5 text-primary'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth='2'
+                          d='M5 13l4 4L19 7'
+                        ></path>
+                      </svg>
+                    </div>
+                    <span className='ml-3 group-hover:text-white transition-colors duration-300'>
+                      Get answers to your trading questions
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className='md:w-1/2 relative h-80 md:h-96 order-1 md:order-2'>
+                <div className='absolute -inset-10 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 blur-3xl opacity-30 rounded-full'></div>
+                <div className='w-full h-full relative overflow-hidden rounded-2xl border border-primary/20 bg-gray-900/70 backdrop-blur-sm shadow-[0_0_35px_rgba(0,0,0,0.4)]'>
+                  <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent'></div>
+                  <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 to-transparent'></div>
+                  <div className='absolute inset-0 flex items-center justify-center text-primary text-lg font-mono'>
+                    [AI Chat Interface Placeholder]
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Version Number - Bottom, centered on mobile */}
-          <div className='absolute bottom-14 md:bottom-6 left-1/2 md:left-1/2 transform -translate-x-1/2 px-3 md:px-4 py-1 md:py-2 rounded-full bg-black/90 backdrop-blur-md border border-gray-800/20 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-30'>
-            <span className='text-xs md:text-sm font-medium text-gray-400'>
-              v0.1337
-            </span>
+          {/* CTA Section */}
+          <div className='mt-48 mb-32 text-center relative'>
+            <div className='absolute -inset-40 bg-primary/5 blur-3xl rounded-full opacity-30 -z-10'></div>
+            <div className='max-w-4xl mx-auto p-12 bg-gray-900/70 backdrop-blur-md rounded-3xl border border-primary/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]'>
+              <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent'></div>
+              <div className='absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent'></div>
+
+              <h2 className='text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight'>
+                Ready to <span className='text-primary'>Transform</span> Your
+                Trading?
+              </h2>
+              <p className='text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto'>
+                Join thousands of traders using The Matrix to gain an edge in
+                the markets with AI-powered insights.
+              </p>
+              <button
+                onClick={handleConnect}
+                className='group relative px-10 py-5 bg-primary text-black font-bold rounded-xl text-xl md:text-2xl
+                         shadow-[0_0_30px_rgba(71,216,163,0.4)] hover:shadow-[0_0_50px_rgba(71,216,163,0.6)]
+                         hover:bg-primary/95 transition-all duration-300 transform hover:scale-105 active:scale-95'
+              >
+                <div className='absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 rounded-xl opacity-50 animate-shine'></div>
+                Enter The Matrix
+              </button>
+              <p className='mt-6 text-gray-400 text-sm'>
+                No credit card required. Get started in seconds.
+              </p>
+            </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className='relative z-20 bg-black/70 backdrop-blur-xl border-t border-primary/10 py-16'>
+          <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent'></div>
+          <div className='max-w-7xl mx-auto px-6 md:px-10'>
+            <div className='flex flex-col md:flex-row justify-between items-center md:items-start gap-12'>
+              <div className='md:w-1/3'>
+                <div className='flex items-center mb-6'>
+                  <div className='relative mr-3'>
+                    <div className='absolute -inset-1 bg-primary/20 blur-md rounded-full opacity-50'></div>
+                    <Image
+                      src='/logo.png'
+                      alt='Matrix Logo'
+                      width={80}
+                      height={40}
+                      priority
+                      className='relative invert'
+                    />
+                  </div>
+                </div>
+                <p className='text-gray-400 text-base max-w-xs'>
+                  The next generation AI-powered trading terminal. Trade
+                  smarter, not harder with real-time insights.
+                </p>
+
+                <div className='flex space-x-4 mt-6'>
+                  <a
+                    href='https://x.com/thematrixapp'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center 
+                                text-gray-400 hover:bg-primary/20 hover:text-primary transition-all duration-300'
+                  >
+                    <XIcon className='h-5 w-5' />
+                  </a>
+                  <a
+                    href='https://github.com/MatrixTerminal/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center 
+                                text-gray-400 hover:bg-primary/20 hover:text-primary transition-all duration-300'
+                  >
+                    <Github className='h-5 w-5' />
+                  </a>
+                  <a
+                    href='https://t.me/the_matrix_official'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center 
+                                text-gray-400 hover:bg-primary/20 hover:text-primary transition-all duration-300'
+                  >
+                    <svg
+                      className='h-5 w-5'
+                      viewBox='0 0 24 24'
+                      fill='currentColor'
+                    >
+                      <path d='M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.25 17.5c0 .29-.183.681-.544.681-1.15 0-1.956-1.382-1.956-1.382l-2.75-4.5s-.334-.544-.334-1.169c0-.625.544-1.042.544-1.042l4.5-3.251s.387-.262.668-.262c.281 0 .625.25.625.625l-.312 3.5 7.375 3.5s.459.166.459.697c0 .53-.469.712-.469.712l-7.375 3.75-.25-1.344z'></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <div className='grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16'>
+                <div>
+                  <h3 className='font-medium text-white text-lg mb-4 relative inline-block'>
+                    Product
+                    <span className='absolute -bottom-1 left-0 w-1/2 h-0.5 bg-primary/50'></span>
+                  </h3>
+                  <ul className='space-y-3 text-gray-400'>
+                    <li>
+                      <a
+                        href='#features'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Features
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#pricing'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Pricing
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#documentation'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Documentation
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#releases'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Releases
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className='font-medium text-white text-lg mb-4 relative inline-block'>
+                    Company
+                    <span className='absolute -bottom-1 left-0 w-1/2 h-0.5 bg-primary/50'></span>
+                  </h3>
+                  <ul className='space-y-3 text-gray-400'>
+                    <li>
+                      <a
+                        href='#about'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        About
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#blog'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Blog
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#careers'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Careers
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#contact'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Contact
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className='font-medium text-white text-lg mb-4 relative inline-block'>
+                    Resources
+                    <span className='absolute -bottom-1 left-0 w-1/2 h-0.5 bg-primary/50'></span>
+                  </h3>
+                  <ul className='space-y-3 text-gray-400'>
+                    <li>
+                      <a
+                        href='#community'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Community
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#tutorials'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Tutorials
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#faq'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        FAQ
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href='#support'
+                        className='hover:text-primary transition-all duration-200 relative group'
+                      >
+                        Support
+                        <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className='mt-16 pt-8 border-t border-gray-800/40 flex flex-col md:flex-row justify-between items-center gap-6'>
+              <div className='text-gray-500'>
+                © 2025 The Matrix. All rights reserved.
+              </div>
+              <div className='flex space-x-8 text-gray-500'>
+                <a
+                  href='#terms'
+                  className='hover:text-primary transition-all duration-200 relative group'
+                >
+                  Terms
+                  <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                </a>
+                <a
+                  href='#privacy'
+                  className='hover:text-primary transition-all duration-200 relative group'
+                >
+                  Privacy
+                  <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                </a>
+                <a
+                  href='#security'
+                  className='hover:text-primary transition-all duration-200 relative group'
+                >
+                  Security
+                  <span className='absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300'></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
