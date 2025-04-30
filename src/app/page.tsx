@@ -176,7 +176,7 @@ export default function HomePage() {
       </section>
 
       {/* Trusted By Section */}
-      <section className='container flex flex-col gap-4 text-neutral-800 dark:text-neutral-400 md:gap-3 mb-16 md:mb-44'>
+      <section className='container flex flex-col gap-4 text-neutral-800 dark:text-neutral-400 md:gap-3 mb-16 md:mb-24'>
         <p className='font-mono text-sm/[0.875rem] tracking-4 md:text-sm/[1.25rem] text-center uppercase text-neutral-400'>
           Trusted by engineers at
         </p>
